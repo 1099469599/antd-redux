@@ -1,14 +1,14 @@
 {
-  "name": "cranber-redux-scaffold",
+  "name": "antd-redux-scaffold",
   "version": "0.6.0",
-  "description": "Redux CMS scaffold built with ant-design",
+  "description": "Redux scaffold built with ant-design",
   "author": "Guox <guoxiang191@gmail.com>",
   "entry": {
-    "index": "./app/index.jsx"
+    "index": "./src/index.jsx"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/guox191/cranber-redux-scaffold.git"
+    "url": "https://github.com/guox191/antd-redux-scaffold.git"
   },
   "keywords": [
     "redux",
@@ -16,24 +16,20 @@
     "scaffold"
   ],
   "scripts": {
-    "dev": "dora -p 8001 --plugins \"webpack,hmr,proxy,livereload?enableJs=false&injectHost=127.0.0.1,browser-history?index=/index.html\"",
+    "dev": "dora -p 8001 --plugins \"webpack,hmr,livereload?enableJs=false&injectHost=127.0.0.1,browser-history?index=/index.html\"",
     "lint": "eslint --ext .js,.jsx src",
     "build": "atool-build -o ./dist/${npm_package_version}"
   },
-  "bugs": "https://github.com/guox191/cranber-redux-scaffold/issues",
+  "bugs": "https://github.com/guox191/antd-redux-scaffold/issues",
   "license": "MIT",
   "dependencies": {
-    "antd": "^1.5.1",
-    "atool-build": "^0.7.5",
-    "babel-plugin-antd": "^0.4.0",
-    "babel-plugin-transform-runtime": "^6.9.0",
-    "babel-runtime": "^6.9.2",
+    "antd": "^2.5.3",
     "classnames": "^2.2.3",
     "core-decorators": "^0.12.3",
-    "es3ify-loader": "^0.1.0",
     "fbjs": "^0.8.0",
     "history": "^3.0.0",
     "isomorphic-fetch": "^2.2.1",
+    "leancloud-storage": "^1.5.3",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.0",
@@ -45,12 +41,15 @@
     "redux-thunk": "^2.0.1"
   },
   "devDependencies": {
-    "dora": "^0.3.2",
-    "dora-plugin-browser-history": "^0.1.1",
-    "dora-plugin-hmr": "^0.6.1",
-    "dora-plugin-livereload": "^0.4.0",
-    "dora-plugin-proxy": "^0.7.0",
-    "dora-plugin-webpack": "^0.6.4",
+    "atool-build": "^0.7.5",
+    "babel-plugin-antd": "^0.5.1",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-runtime": "^6.9.2",
+    "dora": "^0.4.3",
+    "dora-plugin-browser-history": "^0.2.0",
+    "dora-plugin-hmr": "^0.7.1",
+    "dora-plugin-livereload": "^0.5.3",
+    "dora-plugin-webpack": "^0.8.1",
     "eslint": "^2.11.1",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-react": "^5.1.1",

@@ -22,6 +22,7 @@ class router extends React.Component {
 
   @autobind()
   checkLogin(next, replace) {
+    return
     let isLogin = Store.getState().auth.token;
     if (!isLogin && !this.checkLocalSession()) {
       replace('/login');

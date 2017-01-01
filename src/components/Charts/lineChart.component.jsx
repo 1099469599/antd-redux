@@ -24,7 +24,7 @@ const LineChartComponent = React.createClass({
           <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
         </LineChart>
       );
-      
+
       this.forceUpdate();
     }, 'addons');
   },

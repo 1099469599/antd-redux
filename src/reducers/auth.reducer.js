@@ -12,11 +12,11 @@ const initialState = {
 let switchMap = {};
 
 switchMap[SET_AUTH] = (state, action) => {
-    return Object.assign({}, state, {
-      token: action.payload.token,
-      username: action.payload.username,
-      role: action.payload.role
-    });
+  return Object.assign({}, state, {
+    token: action.payload.token,
+    username: action.payload.username,
+    role: action.payload.role
+  });
 };
 
 switchMap[DESTORY_AUTH] = (state) => {
