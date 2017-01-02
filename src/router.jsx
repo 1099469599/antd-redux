@@ -3,14 +3,14 @@ import { Router, Route, IndexRoute, hashHistory, Redirect } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import Store from './store';
-import {autobind} from 'core-decorators';
-import {setAuthAction} from './actions/auth.action';
+import Api from './lib/api.js'
+import { autobind } from 'core-decorators';
+import { setAuthAction } from './actions/auth.action';
 import App from './components/App/app.component';
 import Manage from './components/Manage/manage.component';
 //routes
 import Login from './routes/Login/index';
 import AccountsIndex from './routes/Accounts/index';
-import AccountPostIndex from './routes/AccountsPost/index';
 import DashBoardIndex from './routes/Dashboard/index';
 
 const history = syncHistoryWithStore(hashHistory, Store);
@@ -22,8 +22,7 @@ class router extends React.Component {
 
   @autobind()
   checkLogin(next, replace) {
-    return
-    let isLogin = Store.getState().auth.token;
+    let isLogin = Store.getState().auth.user;
     if (!isLogin && !this.checkLocalSession()) {
       replace('/login');
     }
@@ -31,15 +30,11 @@ class router extends React.Component {
 
   @autobind()
   checkLocalSession() {
-    let localToken = window.localStorage.getItem('session');
-    if (localToken) {
-      //verify
-      const authData = JSON.parse(localToken);
-      Store.dispatch(setAuthAction(authData));
-      return true;
-    } else {
-      return false;
+    let currentUser = Api.currentUser()
+    if (currentUser) {
+      Store.dispatch(setAuthAction(currentUser));
     }
+    return !!currentUser
   }
 
   render() {
@@ -51,8 +46,6 @@ class router extends React.Component {
             <Route path="/" component={Manage} onEnter={this.checkLogin}>
               <IndexRoute component={DashBoardIndex}/>
               <Route path="accounts" component={AccountsIndex} />
-              <Route path="accounts/post" component={AccountPostIndex} />
-              <Route path="accounts/edit/:id" component={AccountPostIndex} />
             </Route>
           </Route>
           <Redirect from="*" to="/" />
@@ -63,3 +56,4 @@ class router extends React.Component {
 }
 
 export default router;
+

@@ -3,13 +3,11 @@ import {
   DESTORY_AUTH
 } from '../constants/actions';
 
-export function setAuthAction(authData) {
+export function setAuthAction(user) {
   return {
     type: SET_AUTH,
     payload: {
-      token: authData.sessionToken,
-      username: authData.username,
-      role: authData.role
+      user: user
     }
   }
 }
@@ -20,8 +18,3 @@ export function destoryAuthAction() {
   }
 }
 
-export function FlushSession() {
-  return dispatch => {
-    window.localStorage.removeItem('session');
-  }
-}

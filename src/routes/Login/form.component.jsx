@@ -1,7 +1,7 @@
 import React from 'react';
-import {Form, Input, Button} from 'antd';
-import {autobind} from 'core-decorators';
-import {openMessageAction} from '../../actions/message.action';
+import { Form, Input, Button, Icon } from 'antd';
+import { autobind } from 'core-decorators';
+import { openMessageAction } from '../../actions/message.action';
 
 const FormItem = Form.Item;
 
@@ -15,33 +15,41 @@ class FormData extends React.Component {
   @autobind()
   handleSubmit(e) {
     e.preventDefault();
-    let formValue = this.props.form.getFieldsValue();
-    if (!formValue.username || !formValue.password) {
-      this.props.dispatch(openMessageAction('请输入正确用户名/密码', 'error'));
-    } else {
-      this.props.loginHandler(formValue.username, formValue.password);
-    }
+    this.props.form.validateFields((err, value) => {
+      if (!err) {
+        this.props.loginHandler(value.username, value.password);
+      }
+    })
   }
 
   render() {
-    const {getFieldProps} = this.props.form;
+    const { getFieldDecorator } = this.props.form;
 
     return (
       <Form horizontal onSubmit={this.handleSubmit}>
         <FormItem>
-          <Input placeholder="用户名" {...getFieldProps('username')}/>
+          {getFieldDecorator('username', {
+            rules: [{required: true}]
+          })(
+            <Input addonBefore={<Icon type="user" />} placeholder="用户名" />
+          )}
         </FormItem>
         <FormItem>
-          <Input type="password" placeholder="密码" {...getFieldProps('password')}/>
+          {getFieldDecorator('password', {
+            rules: [{required: true}]
+          })(
+            <Input addonBefore={<Icon type="lock" />} ype="password" placeholder="密码" />
+          )}
         </FormItem>
-        <Button type="primary"
-                loading={ this.props.loading }
-                htmlType="submit" >
-          登录
-        </Button>
+        <Button
+          type="primary"
+          loading={ this.props.loading }
+          htmlType="submit"
+        >登录</Button>
       </Form>
     );
   }
 }
 
 export default Form.create()(FormData);
+

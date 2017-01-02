@@ -4,26 +4,20 @@ import {
 } from '../constants/actions';
 
 const initialState = {
-  token: null,
-  username: null,
-  role: null
+  user: null, // AV user instance
 };
 
 let switchMap = {};
 
 switchMap[SET_AUTH] = (state, action) => {
   return Object.assign({}, state, {
-    token: action.payload.token,
-    username: action.payload.username,
-    role: action.payload.role
+    user: action.payload.user,
   });
 };
 
 switchMap[DESTORY_AUTH] = (state) => {
   return Object.assign({}, state, {
-    token: null,
-    username: null,
-    role: null
+    user: null
   });
 };
 

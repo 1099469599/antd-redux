@@ -8,29 +8,19 @@ import {
   POST_ACCOUNTS_SUCCESS,
   POST_ACCOUNTS_FAILURE
 } from '../constants/actions';
-import {openMessageAction} from './message.action';
-import {destoryAuthAction} from './auth.action';
+import { openMessageAction } from './message.action';
+import { destoryAuthAction } from './auth.action';
 import Store from '../store';
+import Api from '../lib/api.js'
 
 export function getAccounts() {
   return dispatch => {
     (async() => {
       try {
-        let response = await fetch(`${config.baseUrl}/accounts`, {
-          method: 'GET',
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `session-token ${Store.getState().auth.token}`
-          }
-        });
-        let data = await response.json();
-        if (response.status === 200) {
-          dispatch(getAccountsSuccess(data));
-        } else {
-          dispatch(openMessageAction(data.error, 'error'));
-        }
+        let accounts = await Api.getAccounts()
+        dispatch(getAccountsSuccess(accounts));
       } catch (e) {
-        console.error('Fetch error:', e);
+        dispatch(openMessageAction(e.error, 'error'));
       }
     })();
   }
@@ -84,8 +74,9 @@ export function createAccountFail() {
 
 export function logoutAction() {
   return dispatch => {
-    window.localStorage.removeItem('session');
+    Api.logOut()
     window.location.hash = 'login';
     dispatch(destoryAuthAction());
   }
 }
+

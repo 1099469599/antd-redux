@@ -37,14 +37,10 @@ class DashBoardIndex extends React.Component {
         </Row>
         <Row>
           <Col span="12" style={{paddingRight: 10}}>
-            <Card title="站点运行数据监控" style={{overflowX:'scroll'}}>
-              <LineChart data={this.props.lineData} />
-            </Card>
+            <Card title="站点运行数据监控" style={{overflowX:'scroll'}}></Card>
           </Col>
           <Col span="12" style={{paddingLeft: 10}}>
-            <Card title="站点运行内容监控" style={{overflowX:'scroll'}}>
-              <BarChart data={this.props.barData} />
-            </Card>
+            <Card title="站点运行内容监控" style={{overflowX:'scroll'}}></Card>
           </Col>
         </Row>
       </div>

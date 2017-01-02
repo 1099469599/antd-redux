@@ -39,7 +39,7 @@ class AccountsIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getAccounts()).then(res => {});
+    //this.props.dispatch(getAccounts()).then(res => {});
   }
 
   @autobind()
@@ -56,10 +56,6 @@ class AccountsIndex extends React.Component {
     const hasSelected = selectedRowKeys.length > 0;
     return (
       <div>
-        <div style={{ marginBottom: 16 }}>
-          <Button type="primary" disabled={!hasSelected} loading={loading}>删除</Button>
-          <span style={{ marginLeft: 8 }}>{hasSelected ? `选择了 ${selectedRowKeys.length} 个对象` : ''}</span>
-        </div>
         <Table
           rowSelection={rowSelection}
           columns={columns}

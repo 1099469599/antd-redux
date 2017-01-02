@@ -1,16 +1,12 @@
 export default [
-{
+  {
+    title: '仪表盘',
+    icon: 'appstore',
+    link: '/'
+  }, {
     title: '用户管理',
     icon: 'appstore',
-    sub: [
-      {
-        title: '用户列表',
-        link: 'accounts'
-      }, {
-        title: '添加用户',
-        link: 'accounts/post'
-      }
-    ]
+    link: '/accounts'
   }, {
     title: '导航测试',
     icon: 'appstore',

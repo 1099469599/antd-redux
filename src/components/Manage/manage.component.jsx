@@ -1,9 +1,9 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Breadcrumb, QueueAnim} from 'antd';
+import { connect } from 'react-redux';
+import { Breadcrumb, QueueAnim } from 'antd';
 import Sidebar from '../Sidebar/sidebar.component';
 import Header from '../Header/header.component';
-import {StoreSession, loginSuccessAction} from '../../actions/auth.action';
+import { StoreSession, loginSuccessAction } from '../../actions/auth.action';
 
 const Manage  = React.createClass({
   propTypes: {
@@ -21,14 +21,14 @@ const Manage  = React.createClass({
   },
 
   componentDidUpdate() {
-    this.checkLogin();
+    //this.checkLogin();
   },
 
   render() {
     return (
       <div style={{height: '100%'}}>
-        <Header />
         <Sidebar />
+        <Header />
         <div className="layout-contentbox clearfix">
           {this.props.children}
         </div>

@@ -1,6 +1,8 @@
 .layout-sidebar{
-  float: left;
-  height: calc(100% - 44px);
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
   background-color: #263c4e;
 }
 .ant-menu-dark-blue{

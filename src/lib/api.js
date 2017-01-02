@@ -6,15 +6,30 @@ AV.init({
   appKey: leancloud.appKey
 })
 
+const Account = AV.Object.extend('Account')
+
 export default {
   currentUser() {
-    return AV.User.current()
+    let user = null
+    try {
+      user = AV.User.current()
+    } catch (e) {}
+
+    return user
   },
   logIn(username,  password) {
     return AV.User.logIn(username, password)
   },
   logOut() {
     AV.User.logOut()
-  }
+  },
+  getAccounts() {
+    let query = new AV.Query('Account')
+    query.limit(10)
+    query.skip(0)
+    return query.first()
+  },
+  deleteAccount() {},
+  editAccount() {}
 }
 

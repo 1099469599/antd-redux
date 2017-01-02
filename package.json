@@ -1,26 +1,25 @@
 {
-  "name": "antd-redux-scaffold",
+  "name": "antd-redux",
   "version": "0.6.0",
-  "description": "Redux scaffold built with ant-design",
+  "description": "Redux boilerplate built with ant-design",
   "author": "Guox <guoxiang191@gmail.com>",
   "entry": {
     "index": "./src/index.jsx"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/guox191/antd-redux-scaffold.git"
+    "url": "https://github.com/guox191/antd-redux.git"
   },
   "keywords": [
     "redux",
-    "react",
-    "scaffold"
+    "react"
   ],
   "scripts": {
     "dev": "dora -p 8001 --plugins \"webpack,hmr,livereload?enableJs=false&injectHost=127.0.0.1,browser-history?index=/index.html\"",
     "lint": "eslint --ext .js,.jsx src",
     "build": "atool-build -o ./dist/${npm_package_version}"
   },
-  "bugs": "https://github.com/guox191/antd-redux-scaffold/issues",
+  "bugs": "https://github.com/guox191/antd-redux/issues",
   "license": "MIT",
   "dependencies": {
     "antd": "^2.5.3",
@@ -50,6 +49,7 @@
     "dora-plugin-hmr": "^0.7.1",
     "dora-plugin-livereload": "^0.5.3",
     "dora-plugin-webpack": "^0.8.1",
+    "enzyme": "^2.7.0",
     "eslint": "^2.11.1",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-react": "^5.1.1",

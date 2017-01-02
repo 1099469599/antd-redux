@@ -16,13 +16,13 @@ export function loginStartAction(username, password) {
     (async () => {
       try {
         let user = await Api.logIn(username, password)
-        //dispatch(setAuthAction(data));
+        dispatch(setAuthAction(user));
         dispatch(loginSuccessAction());
         dispatch(openMessageAction('登录成功', 'success'));
         window.location.hash = '/';
       } catch (e) {
-        console.error(e);
         dispatch(loginFailedAction());
+        dispatch(openMessageAction(e.message, 'error'));
       }
     })();
   }

@@ -1,10 +1,13 @@
 import React from 'react';
-import {Menu, Icon} from 'antd';
-import {Link} from 'react-router';
-import {sidebar}  from '../../config/app';
+import { Menu, Icon } from 'antd';
+import { Link } from 'react-router';
+import { sidebar }  from '../../config/app';
 import './sidebar.css';
 
 const SubMenu = Menu.SubMenu;
+const createMenuItem = function () {
+
+}
 
 const Sidebar = React.createClass({
   getInitialState() {
@@ -18,11 +21,15 @@ const Sidebar = React.createClass({
       current: e.key
     });
   },
-  
+
   render() {
     return (
       <div className="layout-sidebar"
            style={{ width: 210 }}>
+        <div className="layout-title">
+          <img className="layout-logo" src="../../../assets/svgs/logo.svg" />
+          <h1 className="layout-title-text">Antd Admin</h1>
+        </div>
         <Menu onClick={this.handleClick}
             style={{ width: 210}}
             defaultOpenKeys={['sub0']}
@@ -31,6 +38,11 @@ const Sidebar = React.createClass({
             mode="inline">
           {
             sidebar.map((ele, index) => {
+              if (!ele.sub) {
+                return (<Menu.Item key={`${index}`}>
+                  <Link to={ele.link}>{ele.title}</Link>
+                  </Menu.Item>)
+              }
               return (
                 <SubMenu key={`sub${index}`} title={<span>
                   <Icon type={ele.icon} />{ele.title}</span>}>
